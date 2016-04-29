@@ -79,7 +79,7 @@ console.log(String.fromCharCode(69));              // E
 console.log(String.fromCharCode(72,69,76,76,79));  // HELLO
 ```
 
-> valueOf();
+> valueOf( );
 
 * Returns the `primitive value` of a string.
 
@@ -176,7 +176,7 @@ console.log(str.search(re));   // 18
 * Returns the matches as an `array` object.
 
 ```js
-console.log(str.match(/my/g)); // ["my"]
+console.log(str.match(/my/g));  // ["my"]
 ```
 
 
