@@ -8,4 +8,5 @@ Javascript syntax, definitions, important hints, examples and more...
 ### Topics:
 
 1. Numbers and Math
-2. Strings (_in progress_)
+2. Strings
+3. Type Conversion (_in progress_)
