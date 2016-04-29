@@ -72,7 +72,7 @@ console.log({} == 0);            // false
 > The initial value of undefined is the `primitive value` 'undefined'.
 
 
-*  A primitive (primitive value, primitive data type) is data that is `not an object` and has `no methods`.
+*  A `primitive` (primitive value, primitive data type) is data that is `not an object` and has `no methods`.
 *  In JavaScript there are `6 primitive types`:
 
     1. undefined
