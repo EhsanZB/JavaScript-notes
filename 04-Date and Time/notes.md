@@ -31,17 +31,16 @@ var date2 = new Date(1997,0,1); // January, 1 1997
 
 #### Date methods:
 
-1. Date.now( );
-returns the number of milliseconds elapsed since 1 January, 1970 00:00:00 UTC.
+> Date.now( );
+* returns the number of milliseconds elapsed since 1 January, 1970 00:00:00 UTC.
 
-2. Date.parse( );
-Parses a string representation of a date and returns the number of milliseconds since 1 January, 1970 00:00:00 UTC.
+> Date.parse( );
+* Parses a string representation of a date and returns the number of milliseconds since 1 January, 1970 00:00:00 UTC.
 
-3. UTC:
-returns the number of milliseconds in a Date object since January 1, 1970, 00:00:00, universal time.
-
-    1. Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
-    2. Date.UTC( );
+> UTC:
+1. Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
+2. Date.UTC( );
+* returns the number of milliseconds in a Date object since January 1, 1970, 00:00:00, universal time.
 
 ```js
 
@@ -52,3 +51,14 @@ console.log(Date.UTC(1981,0));             // e.g: 347155200000
 
 ```
 
+#### Date property:
+
+> Date.length;
+* The value of Date.length is always 7. This is the number of arguments handled by the constructor.
+```js
+console.log(Date.length); // 7
+```
+
+#### Date.prototype GETTER Methods:
+
+> getDate( );
