@@ -20,8 +20,7 @@
 
 * `dateString`: String value representing a date. It should be in a format recognized by the Date.parse( ) method.
 
-```php
-<?php
+```js
 
 var date1 = new Date();
 var holiday = new Date('December 25, 2015');
@@ -33,22 +32,23 @@ var date2 = new Date(1997,0,1); // January, 1 1997
 #### Date methods:
 
 1. Date.now( );
-* returns the number of milliseconds elapsed since 1 January, 1970 00:00:00 UTC.
+returns the number of milliseconds elapsed since 1 January, 1970 00:00:00 UTC.
 
 2. Date.parse( );
-* Parses a string representation of a date and returns the number of milliseconds since 1 January, 1970 00:00:00 UTC.
+Parses a string representation of a date and returns the number of milliseconds since 1 January, 1970 00:00:00 UTC.
 
-3. UTC
+3. UTC:
+returns the number of milliseconds in a Date object since January 1, 1970, 00:00:00, universal time.
+
     1. Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
     2. Date.UTC( );
-* returns the number of milliseconds in a Date object since January 1, 1970, 00:00:00, universal time.
 
-```php
-<?php
+```js
 
 console.log(Date.now());                   // e.g: 1462315841357
 console.log(Date.parse("26/august/1981")); // e.g: 367657200000
 
 console.log(Date.UTC(1981,0));             // e.g: 347155200000
+
 ```
 
