@@ -154,7 +154,8 @@ console.log(date);
 
 > toString( );
 
-*
+* Converts a Date object to a string.
+* Always returns a string representation of the date in American English.
 
 > toUTCString( );
 
