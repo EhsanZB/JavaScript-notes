@@ -10,4 +10,5 @@ Javascript syntax, definitions, important hints, examples and more...
 1. Numbers and Math
 2. Strings
 3. Type Conversion
-4. Date and Time (_in progress_)
+4. Date and Time
+5. Expressions (_in progress_)
