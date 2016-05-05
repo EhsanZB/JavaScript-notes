@@ -44,6 +44,6 @@ function square(x) {return x * x};
 > Property access expression:
 
 * `expression` represents 'object/array name' and `identifier` represents 'property name/index':
-    1) expression.identifier    // Object
-    2) expression[identifier]   // Array
+1. expression.identifier    // Object
+2. expression[identifier]   // Array
 
