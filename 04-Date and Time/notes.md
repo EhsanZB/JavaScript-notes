@@ -65,3 +65,110 @@ console.log(Date.length); // 7
 #### Date.prototype GETTER Methods:
 
 > getDate( );
+
+* Returns the `'day of the month'` (1-31) for the specified date according to local time.
+
+> getDay( );
+
+* Returns the `'day of the week'` (0-6) for the specified date according to local time.
+* 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on ...
+
+```js
+var holiday = new Date('December 25, 2015');
+console.log(holiday.getDay());   // 5 --> Friday
+```
+
+> getFullYear( );
+
+* Returns the year (4 digits for 4-digit years) of the specified date according to local time.
+
+> getMonth( );
+
+* Returns the month (0-11) in the specified date according to local time.
+* 0 corresponds to January, 1 to February, and so on ...
+
+> getTime( );
+
+* Returns the numeric value of the specified date as the number of milliseconds since January 1, 1970, 00:00:00 UTC (negative for prior times).
+
+> getTimezoneOffset( );
+
+* Represents the difference in minutes, between UTC and local time.
+* Use (getTimezoneOffset() / 60) to `represent in hour`.
+
+> getHours( );
+
+* Returns the hour `(0-23)` in the specified date according to local time.
+
+> getMinutes( );
+
+* Returns the minutes `(0-59)` in the specified date according to local time.
+
+> getSeconds( );
+
+* Returns the seconds `(0-59)` in the specified date according to local time.
+
+> getMilliseconds( );
+
+* Returns the milliseconds `(0-999)` in the specified date according to local time.
+
+```js
+var date = new Date();
+
+var H = date.getHours();
+var M = date.getMinutes();
+var S = date.getSeconds();
+var MS = date.getMilliseconds();
+
+console.log('TIME: ' + H + ':' + M + ':' + S + ':' + MS);   // e.g: TIME: 17:33:54:640
+```
+
+#### Date.prototype SETTER Methods:
+
+> setDate( );
+
+* Sets the day of the month for a specified date according to local time.
+
+> setFullYear( );
+
+* Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to local time.
+
+> setMonth( );
+
+* Sets the month for a specified date according to local time.
+
+> setHours( ), .setMilliseconds( ), .setMinutes( ), .setSeconds( ), .setTime( ), ...
+
+```js
+var date = new Date(1997,0,1);     // January, 1 1997
+console.log(date);                 // Wed Jan 01 1997 00:00:00 GMT-0800 (PST)
+date.setDate(date.getDate() - 1);  // Tue Dec 31 1996 00:00:00 GMT-0800 (PST)
+console.log(date);
+```
+
+#### Date conversion GETTER:
+
+> toDateString( );
+
+* Returns the "date" portion of the Date as a human-readable string.
+
+> toString( );
+
+*
+
+> toUTCString( );
+
+* Converts a date to a string using the UTC timezone.
+* converts your local time to GMT greenwich time.
+* Note that for example now is Mon Dec 21 but in London (greenwich) is Tue, 22 Dec!
+
+```js
+var date = new Date();
+
+console.log(date);                  // e.g: Mon Dec 21 2015 17:33:54 GMT-0800 (PST)
+console.log(date.toDateString());   // e.g: Mon Dec 21 2015
+console.log(date.toString());       // e.g: Mon Dec 21 2015 17:33:54 GMT-0800 (PST)
+console.log(date.toUTCString());    // e.g: Tue, 22 Dec 2015 03:31:39 GMT
+```
+
+
