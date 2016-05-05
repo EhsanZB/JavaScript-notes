@@ -2,12 +2,12 @@
 
 * Operators are used for the tasks below in JS:
 
-1) `Arithmetic` expression +,-,*,....
-2) `Comparison` expression >,>=,in,instanceof,...
-3) `Logical`    expression &&,||
-4) `Assignment` expression =
-5) `Relational` expression ==,===,!=,!==
-6) `Evaluation` expression eval("2+3") --> 5
+1. `Arithmetic` expression +,-,*,....
+2. `Comparison` expression >,>=,in,instanceof,...
+3. `Logical`    expression &&,||
+4. `Assignment` expression =
+5. `Relational` expression ==,===,!=,!==
+6. `Evaluation` expression eval("2+3") --> 5
 
 > Operators with `higher precedence` are performed before those with lower precedence. For example * has higher precedence than + so: var num = 2+3*5 = 17  (3x5=15 then 2+15)
 
