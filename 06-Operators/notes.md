@@ -44,3 +44,70 @@ for ( var i=0; i<=10; i++ ){
 }
 ```
 
+> Increment (++): increments (adds one to) its operand and returns a value. There are 2 types of increment:
+
+1. `postfix` (post-increment) a++  (it returns the value `'before'` incrementing)
+2. `prefix`  (pre-increment) ++a   (it returns the value `'after'` incrementing)
+
+```js
+var a = 3;
+post = a++;        // 3
+
+console.log(a);    // 4
+console.log(post); // 3
+
+
+var b = 3;
+pre = ++b;        // 4
+
+console.log(b);   // 4
+console.log(pre); // 4
+```
+
+#### Property existence:
+
+example:
+
+```js
+var p = {x:1, y:1};
+console.log("x" in p);        // true
+//console.log(x in p);        // ERROR! (x in not defined)
+console.log("toString" in p); // true (p inherits toString)
+
+var a = [7,8,9];
+console.log("0" in a);    // true (a has an element "0") index 0
+console.log("1" in a);    // true (a has an element "1") index 1
+console.log("2" in a);    // true (a has an element "2") index 2
+console.log("3" in a);    // fasle
+
+console.log(0 in a);      // true (a has an element "0") index 0   // numbers are converted
+console.log(1 in a);      // true (a has an element "1") index 1
+console.log(2 in a);      // true (a has an element "2") index 2
+console.log(3 in a);      // false
+
+console.log(7 in a);      // false
+console.log("7" in a);    // false
+```
+
+#### Object type (instanceof):
+
+example:
+
+```js
+var date = new Date();
+console.log(date instanceof Date);   // true
+console.log(date instanceof Object); // true
+console.log(date instanceof Number); // false
+
+var num = 57;
+console.log(num instanceof Object);  // false
+console.log(num instanceof Number);  // false
+
+var num = Number(57);
+console.log(num instanceof Object);  // false
+console.log(num instanceof Number);  // false
+
+var num = new Number(57);
+console.log(num instanceof Object);  // true
+console.log(num instanceof Number);  // true
+```
