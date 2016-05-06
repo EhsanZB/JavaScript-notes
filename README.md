@@ -12,4 +12,5 @@ Javascript syntax, definitions, important hints, examples and more...
 3. Type Conversion
 4. Date and Time
 5. Expressions
-6. Operators (_in progress_)
+6. Operators
+7. Statements (_in progress_)
