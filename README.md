@@ -14,3 +14,4 @@ Javascript syntax, definitions, important hints, examples and more...
 5. Expressions
 6. Operators
 7. Statements (_in progress_)
+
