@@ -111,3 +111,97 @@ var num = new Number(57);
 console.log(num instanceof Object);  // true
 console.log(num instanceof Number);  // true
 ```
+
+> Logical operators: && (and), || (or), ! (not)
+
+* Perform boolean algebra and are often used in conjunction with the relational operators (to combine `two relational expressions`).
+* Remember that `null,undefined,0,"",NaN` are 'falsy' values and all other values including objects and arrays are 'truthy' values.
+* `Relational expressions` always return (evaluate to) true or false.
+* Relational expression have `higher precedence` than logical expressions.
+* In `logical expressions`, for example && does not require that its operands be boolean values (unlike relational).
+* The operator returns "a truthy value" or " a falsy value", but `does not specify` what that value is.
+
+##### && (Boolean AND operation):
+
+* If the value of the 'left side' of the operation is 'falsy', then the value of entire expression must also be false, (returns only the left side and does not evaluate the right side, only when left is false).
+* If the value of the 'left side' of the operation is 'truthy', then the value of entire expression will depend on the right side.
+
+> 1. true && true = true
+> 2. true  && false = false
+> 3. false && true = false
+> 4. false && false = false
+
+##### || (Boolean OR operation):
+
+* if the value of the 'left side' of the operation is 'falsy', then the value of entire expression will depend on the right side.
+* if the value of the 'left side' of the operation is 'truthy', then the value of entire expression evaluate as true.
+
+> 1. true || true = true
+> 2. true || false = true
+> 3. false || true = true
+> 4. false || false = false
+
+* An idiomatic usage of || is to select the first truthy value in a set of alternatives.
+
+In this example, if max_width is defined, then use that, otherwise look for a value in the object, if that is not also defined, then use constant hard coded value:
+
+```js
+var max = max_width || myObject.max_width || 500;
+```
+
+> Evaluation expression:
+
+```js
+console.log(eval("2+3"));    // 5
+
+eval("var myNum = 100");
+console.log(myNum);          // 100
+```
+
+> Comma operator (,):
+
+* It is binary operator whose operands may be of any type. it evaluates its left operand, then evaluates its right operand and then returns the value of the 'right' operand and the left-hand expression is always evaluated but its value is dismissed.
+* So it only makes sense to use the comma operator when the `left-hand expression has side-effect`.
+
+> Expression ? true : false
+
+```js
+ // var user = {name : ""};
+ var user = {name : "Ehsan"};
+ var greeting = "hello " + (user.name ? user.name : "there");
+
+ console.log(greeting);
+```
+
+> Delete operator
+
+* It is a `unary` operator that attempts to `delete the object property or array element`.
+
+```js
+var p = {x:1, y:1};
+console.log('y' in p);   // true
+
+delete p.y;
+console.log('y' in p);   // false
+```
+
+> What is SIDE-EFFECT?
+
+* Evaluating simple expressions like 2*3 never affect the state of our program and any future computations that our program performs will be `unaffected` by that evaluation, but some expression, however, have 'side-effects', so their `evaluation may affect result of future evaluations`.
+* `Assignment operators` are the most obvious example,increments ++, decrements --, delete.
+* In programming we need to `minimize or prevent side-effects`: for example using Array.prototype.forEach( ) instead of for(var x = ...)
+
+```js
+var myArray = [1, 2, 3];
+
+// "x" and "length" are side effects
+for(var x=0, length = myArray.length; x < length; x++) {
+    // ...
+}
+
+// Array prototype methods like map, forEach, and every allow the developer to avoid these side effects
+
+[1, 2, 3].forEach(function(item, index, array) {
+    // No side effects! :)
+});
+```
