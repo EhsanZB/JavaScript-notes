@@ -163,7 +163,7 @@ console.log(myNum);          // 100
 * It is binary operator whose operands may be of any type. it evaluates its left operand, then evaluates its right operand and then returns the value of the 'right' operand and the left-hand expression is always evaluated but its value is dismissed.
 * So it only makes sense to use the comma operator when the `left-hand expression has side-effect`.
 
-> Expression ? true : false
+> expression ? true : false
 
 ```js
  // var user = {name : ""};
@@ -200,7 +200,6 @@ for(var x=0, length = myArray.length; x < length; x++) {
 }
 
 // Array prototype methods like map, forEach, and every allow the developer to avoid these side effects
-
 [1, 2, 3].forEach(function(item, index, array) {
     // No side effects! :)
 });
