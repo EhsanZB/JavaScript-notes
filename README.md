@@ -13,5 +13,6 @@ Javascript syntax, definitions, important hints, examples and more...
 4. Date and Time
 5. Expressions
 6. Operators
-7. Statements (_in progress_)
+7. Statements
+8. Control statements (_in progress_)
 
