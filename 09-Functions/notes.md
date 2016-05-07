@@ -271,3 +271,51 @@ doSomething("Hello",25, {x:70},"Ehsan");
 // arg 3: Ehsan
 ```
 
+#### Recursion:
+
+* is a programming concept (`calling a function on itself`). It is not unique to JavaScript, but is used in all languages.
+* is a `technique` for iterating over an operation by having `a function call itself repeatedly until it arrives at a result`.
+* best applied when you need to `call the same function repeatedly with different parameters` from within a loop.
+* it allows for the construction of code that doesn’t require setting and maintaining state with local variables.
+* `'recursive functions'`: The classic example of a function where recursion can be applied is the `factorial`. 6! = 6x5x4x3x2x1 = 720
+
+```js
+function factorial(n){
+    if (n <= 1) return 1;
+    return n * factorial(n-1);
+}
+
+console.log(factorial(6));   // 720
+```
+
+> Function.prototype.toString()
+
+* The toString() method returns a string representing the `source code of the function`.
+* The Function object overrides the toString method inherited from Object; it `does not inherit Object.prototype.toString`.
+* it returns a `string representation of the object` in the form of a function declaration.
+
+#### Function constructor:
+
+* functions also can be created by Function constructor.
+* function constructor `accepts any number of string` as its arguments, but note that the `last argument is the function body`.
+* the body can contain arbitrary js statements (separated from each other by semicolons (:)
+* it's important that the function that is created by Function() constructor, `does not use lexical scoping`, instead they are always compiled as if they were top-level functions.
+* they can also `access global variables`, but Not any local variables.
+
+
+```js
+// f1 and f2 are equal
+var f1 = new Function("x","y","return x+y;");
+var f2 = function(x,y){ return x+y;};
+
+
+// Create a function that takes two arguments and returns the sum of those arguments
+var adder = new Function('a', 'b', 'return a + b');
+console.log(adder(2, 6)); // 8
+````
+
+> 'lexical scope' (also called 'static Scope')
+
+* Every `inner level` can access its `outer levels`.
+* Lexical Scoping defines how variable names are resolved in nested functions.
+* `inner functions contain the scope of parent functions` even if the parent function has returned.
