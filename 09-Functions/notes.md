@@ -285,8 +285,33 @@ function factorial(n){
     return n * factorial(n-1);
 }
 
-console.log(factorial(6));   // 720
+console.log(factorial(6)); // 720
 ```
+
+> arguments.callee( )
+
+* callee is a property of the arguments object.
+* It can be used to refer to the currently executing function inside the function body of that function.
+* It is useful when the `name of the function is unknown`, such as within a function expression with no name (also called "anonymous functions").
+* note that the 5th edition of ECMAScript (ES5) forbids use of arguments.callee() in strict mode.
+
+```js
+function factorialUpdated(n){
+    if (n <= 1) return 1;
+    return n * arguments.callee(n-1);
+}
+
+console.log(factorialUpdated(6)); // 720
+```
+
+* the shorter version:
+
+```js
+function factorialShorted(n){
+  return (n<=1) ? 1 : n * arguments.callee(n-1);
+}
+```
+
 
 > Function.prototype.toString()
 
