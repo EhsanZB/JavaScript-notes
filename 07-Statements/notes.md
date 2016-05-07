@@ -103,3 +103,132 @@ var y = 7;
 ```
 
 > 'declared' vs 'undeclared' variables:
+
+* it is recommended to always declare variables, regardless of whether they are in a function or global scope.
+* Assigning a value to an 'undeclared' variable `implicitly creates it as a 'global variable'` (without using 'var' --> we have undeclared variable).
+* it becomes a property of the global object, when the assignment is executed. `Undeclared variables are always global`.
+* Declared variables are constrained in the `execution context` in which they are declared.
+
+```js
+function myFunction(){
+    y = 1;      // Throws a ReferenceError in 'strict mode'
+    var z = 2;  // declared variable (within this scope only)
+}
+
+myfunction();
+console.log(y); // 1 (although y is defined in the myFunction scope but because it defined as 'undeclared' variable so it is considered as global variable so we can access it from outside of the function
+console.log(z); // ReferenceError: z is not defined
+```
+* Undeclared variables do not exist until the code assigning to them is executed.
+
+```js
+console.log(a);                // Throws a ReferenceError.
+console.log('still going...'); // Never executes.
+```
+
+```js
+var a;
+console.log(a);                // logs "undefined" or "" depending on browser.
+console.log('still going...'); // logs "still going...".
+```
+* Undeclared variables are `configurable` (e.g. can be deleted). but declared variables are a `non-configurable` property of their execution context (function or global).
+
+```js
+var a = 1;
+b = 2;
+
+// delete this.a;  // Throws a TypeError in strict mode. Fails silently otherwise.
+delete this.b;
+console.log(a, b); // Throws a ReferenceError. The 'b' property was deleted and no longer exists.
+```
+
+> Assigning two variables with single string value:
+
+```js
+var str1 = 'A';
+var str2 = str1;
+
+console.log(str1 + " , " + str2); // A , A
+// it's equivalent to: var str1 = str2 = 'A'
+```
+> Beware of the `order` of the declaration!
+
+```js
+var str3 = str4,
+    str4 = 'A';
+
+console.log(str3 + " , " + str4); // undefined , A
+```
+
+* Other miscellaneous statements: with,debugger,'use strict'
+
+> with (object/expression) statement:
+
+* The following `with statement` specifies that the Math object is the default object without specifying an object.
+* JavaScript `assumes the Math object` for these references.
+* Use of the 'with' statement is `not recommended`, as it may be the source of confusing bugs and compatibility issues.
+* The with statement 'extends the scope chain' for a statement.
+* it's `forbidden in 'strict mode'`.
+* when JS looks up for the value of a variable, it first looks are the variable defined within the current scope, the 'with' `temporarily alters` the way variables are looked up.
+
+```js
+var a, x, y;
+var r = 10;
+
+with (Math) {
+    a = PI * r * r;
+    x = r * cos(PI);
+    y = r * sin(PI / 2);
+}
+```
+
+> 'use strict' mode:
+
+* It is `not a statement`, but a 'literal expression'.
+* Defines that JavaScript code should be executed in "strict mode". (the code should be executed in "strict mode").
+* The `"use strict" directive` is new in JavaScript 1.8.5 (ECMAScript version 5).
+* Strict mode makes it easier to write `"secure"` JavaScript.
+
+_In strict mode, any assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object, will `throw an error`._
+
+* The things which are not allowed in 'strict mode':
+
+1. Using a variable or object, `without` declaring
+2. `Deleting` a variable, function, parameters
+3. `Octal` numeric literals are not allowed
+4. `Escape` characters are not allowed
+5. Writing to a `read-only property` is not allowed
+
+```js
+"use strict";
+var obj = {};
+Object.defineProperty(obj, "x", {value:0, writable:false});
+
+obj.x = 3.14;         // throws an error!
+```
+
+6. Writing to a `get-only property` is not allowed.
+
+```js
+var obj = {get x() {return 0} };
+obj.x = 3.14;         // throws an error!
+```
+
+7. The string `"arguments"` cannot be used as a variable.
+```js
+"use strict";
+var arguments = 3.14; // throws an error!
+```
+
+8. The `with statement` is not allowed.
+9. `eval() is not allowed` to create variables in the scope from which it was called.
+
+```js
+"use strict";
+eval ("var x = 2");
+console.log(x);      // throws an error!
+```
+
+
+
+
