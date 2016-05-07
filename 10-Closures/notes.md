@@ -82,3 +82,123 @@ console.log(makeAdder(5)(2));   // 7
 console.log(makeAdder(10)(23)); // 33
 ```
 
+> _note that it's possible for two or more nested functions to be defined within the same outer function, and share the same private variable._
+
+* in the example below, note that count and reset `share state` (both methods share access to the private variable n).
+* each invocation of the counter( ) `creates a 'new scope chain' and a 'new private variable'`.
+
+```js
+function counter(){
+    var n = 0;
+    return {
+        count : function() {return n++},
+        reset : function() {n = 0;}
+    };
+}
+
+// creating tow counters (they count independently)
+var counterA = counter();
+var counterB = counter();
+
+console.log(counterA.count());     // 0
+console.log(counterA.count());     // 1
+console.log(counterA.count());     // 2
+console.log(counterA.count());     // 3
+
+console.log(counterB.count());     // 0
+console.log(counterB.count());     // 1
+console.log(counterB.count());     // 2
+
+console.log(counterA.count());     // 4
+console.log(counterA.count());     // 5
+
+counterA.reset();
+
+console.log(counterA.count());     // 0
+console.log(counterA.count());     // 1
+
+console.log(counterB.count());     // 3 (the counterB wa not reset, so it continues counting!)
+console.log(counterB.count());     // 4
+```
+
+* in previous example count and reset share the same private variable,
+* but in some cases, it's possible that closures inadvertently share access to variable that they (closures) should not share!
+
+creating multiple closures using loop:
+* DO NOT try to move the loop within the function that defines the closure!
+
+```js
+// this function returns a function that always return v
+function constant(v){return function(){return v;} }
+
+// create an array of constant functions
+var funcs = [];
+for (var i=0; i<10; i++){ funcs[i] = constant(i)}
+
+// the function at array element 5 returns the value 5
+console.log(funcs[5]()); // 5
+```
+
+* this code creates 10 closures and stores them in an array which all closures are defined within the same invocation of the function
+* so they share the access to the variable i --> all functions in the returned array of functions return teh same value
+* return an array of functions that return 0-9
+
+```js
+function constFuncs(){
+    var funcs = [];
+    for (var i=0;i<10;i++){
+        funcs[i] = function(){return i;};
+    }
+    return funcs;
+}
+
+var funcs = constFuncs();
+console.log(funcs[5]()); // 10
+```
+
+> _Every function has a 'this' value and `a closure cannot access the 'this' value` of its outer function unless the outer function has saved that value into a variable. (remember that it's convention to use 'self' keyword for such storage)._
+
+> _it's important that the 'scope chain' associated with a closure is `'live'` and nested functions `do NOT make private copies of the scope` (or do NOT make static snapshots of the variable bindings)._
+
+> _the `arguments binding` also are similar to 'this' value, so nested functions cannot access to the outer function's arguments array unless the outer function has saved that array into a variable but in `different name`._
+
+```js
+var outerArguments = arguments;
+```
+
+> bind( ) method of a function object:
+
+* the primary purpose of bind( ) is to bind a function to an object.
+* the arguments that we pass to the new function are `passed to the original function`.
+
+```js
+// this function needs to be bound
+function fn(y) { return this.x + y};
+
+// this is an object that we will bind to.
+var obj = { x : 1};
+
+// binding fn function to obj object
+var bindResult = fn.bind(obj);
+
+// calling 'bindResult(x)' invokes obj.fn(x)
+console.log(bindResult(2));        // 3 (1+2)
+console.log(typeof bindResult);    // function
+```
+
+* revised version of the above example by returning a function that invokes fnNew as a method of objNew, and passing all its arguments.
+
+```js
+function bindFn(fnNew, objNew){
+
+    // use the bind method, if there is one!
+    if (fnNew.bind) return fnNew.bind(objNew);
+
+    // otherwise, bind it like this...
+    else return function(){
+
+        // apply fnNew function to objNew
+        return fnNew.apply(objNew, arguments);
+    }
+}
+```
