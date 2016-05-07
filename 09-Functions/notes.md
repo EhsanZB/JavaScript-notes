@@ -4,6 +4,9 @@
 * BUT functions are really a special kind of JS object -> since functions are objects so they can `have properties and methods`.
 * in JS, functions are object -> so it's possible to set properties on them or even invoke methods on them.
 * there is even a `functions constructor` to create new function object.
+* functions like other objects have a `'prototype property'` that refers to an object known as `'prototype object'`.
+* every function has different prototype object
+* also note that the functions that are used as a 'constructor', the newly created object `inherits properties from the prototype` object.
 
 > _just to remind that everything in an object is `property` (with key/name and value), but if the value of a property is a function, then that property is `considered as method` of that function._
 
@@ -209,5 +212,62 @@ console.log(bar.doSomething.call(foo,1,2));    // Second Object: 1,2
 console.log(bar.doSomething.apply(foo,[1,2])); // Second Object: 1,2
 ```
 
+> _note that JS function invocation do NOT even check the number of arguments being passed._
 
+* if the number of parameters in which the invocation is being passed is `fewer than the declared parameters` --> the additional parameters are set to 'undefined'.
+* note that it's important to specify the 'reasonable default value' for `omitted parameters` in the declaration process.
+* also note that when a function is invoked with more arguments values than there are parameter names --> there is no way to 'directly' refer to unnamed values. --> using 'argument' identifier
+
+* in this example if 'arr' argument is omitted, then the function create and return a new array
+* also, the names function now can be invoked with and without arr parameter
+
+```js
+function names(obj,arr){
+    if (arr === undefined) arr = [];
+    for (var prop in obj) arr.push(prop);
+    return arr;
+}
+
+var myObject = {
+    name : 'Ehsan',
+    last : 'ZB',
+    fullName : function(){
+        return this.name + this.last;
+    }
+};
+
+var result = names(myObject);
+console.log(result);          // ["name", "last", "fullName"]
+```
+
+#### Argument object:
+
+* is an array-like object which allows the argument values (passed to the function) to `be retrieved by number` (rather than by name!).
+* argument[0] refers to the first arguments, so on ...
+
+> the important use of the Argument object is to write a function that operates on `'any number of arguments'`.
+
+* note that the argument object has length property which shows the number of elements it contains.
+* functions that accept any number of arguments are also called as: 'variable functions' or 'variable arity function' or 'varargs functions'.
+* it's also common to use such functions when function expects a fixed number of arguments followed by an arbitrary number of unnamed 'optional' arguments.
+
+> arguments.length --> number of arguments that were passed to the function
+
+* it's a read-only property which `returns the 'arity' of the function` --> the number of parameters that it declares in its parameters list.
+
+```js
+function doSomething(){
+    console.log('You have passed ' + arguments.length + ' arguments to this function');
+    for (var i=0;i<arguments.length;i++){
+        console.log('arg ' + i + ': ' + arguments[i]);
+    }
+}
+
+doSomething("Hello",25, {x:70},"Ehsan");
+// You have passed 4 arguments to this function
+// arg 0: Hello
+// arg 1: 25
+// arg 2: [object Object]
+// arg 3: Ehsan
+```
 
