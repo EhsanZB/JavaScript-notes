@@ -35,6 +35,20 @@ switch (expression){
 ```
 
 ```js
+// 'throw' // to create custom error (also we can use Error class)
+
+try{
+    // statements
+}catch (error){
+    // this block of code executes if and only if the try block throws an exception!
+    console.log(error);
+}finally {
+    // this block always is executed (regardless of what happens in try or catch blocks)
+}
+```
+
+
+```js
 for (initialization; test condition; iteration statement){
     // executed if test condition is true
 }
@@ -79,3 +93,30 @@ do{
     cnt++;
 }while(cnt <= 10);
 ```
+
+* `'break'` cause a loop to `switch to exit` (jump to end of the enclosing statement or terminate it).
+* `'continue'` unlike break, restarts the loop at the `next iteration`.
+* the continue statement in both labeled and unlabeled forms, can be used o`nly within the body of a loop`
+* 'labeled statements' --> identifier : statement
+
+```js
+mainloop: for( var i=0; i<10; i++ ){
+    console.log(i);
+    continue mainloop;
+
+    // jump to the top of the code and run again the for.
+    // it never reach to the next line (comment 'continue' line if you want the next line be executed!)
+    if (i==5) break mainloop;
+}
+```
+
+> `'return' statement` can be used without an expression (return expression;), to make the function return 'undefined' `before it reaches the end of its body`.
+
+```js
+function display_object(obj){
+    if (!obj) return; // returns immediately if the obj is null or undefined
+
+    // the rest of the function goes here...
+}
+```
+
