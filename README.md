@@ -15,5 +15,5 @@ Javascript syntax, definitions, important hints, examples and more...
 06. Operators
 07. Statements
 08. Control statements
-09. Functions (_in progress_)
-
+09. Functions
+10. Closures (_in progress_)
