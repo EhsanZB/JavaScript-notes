@@ -7,12 +7,13 @@ Javascript syntax, definitions, important hints, examples and more...
 
 ### Topics:
 
-1. Numbers and Math
-2. Strings
-3. Type Conversion
-4. Date and Time
-5. Expressions
-6. Operators
-7. Statements
-8. Control statements (_in progress_)
+01. Numbers and Math
+02. Strings
+03. Type Conversion
+04. Date and Time
+05. Expressions
+06. Operators
+07. Statements
+08. Control statements
+09. Functions (_in progress_)
 
