@@ -8,6 +8,15 @@
 * `dynamic`: they grow and shrink as needed
 * Arrays are special form of javascript object (note that access to numerically indexed array elements is `faster` than access to regular object properties)
 
+* Array.isArray() : returns true if an object is an array, false if it is not.
+
+```js
+
+console.log(Array.isArray([])); // true
+console.log(Array.isArray({})); // false
+
+```
+
 > 'creating arrays using array literal [element1, element2, element3, ...]'
 
 ```js
@@ -17,7 +26,7 @@ var myArray2 = [1,2,"3",{x:4,y:5},[6,7],9,10]; // elements can be any type
 var base = 1024;
 var myArray3 = [1,base,base+4,-base,"23"];
 ```
-* Arrays ca be 'sparse': when an array literal contains 2 commas (,,) in a row --> it means that an element is missing.
+* Arrays ca be `sparse`: when an array literal contains 2 commas (,,) in a row, it means that an element is missing.
 * missing elements are 'undefined'.
 
 ```js
@@ -49,21 +58,25 @@ console.log(myList.length); // 3
 ```js
 // way#1
 var myArray4  = new Array(); // this is same as array literal of []
+
 // way#2
 var myArray5 = new Array(3); // 'pre-allocate' elements for this array (note that such elements and their respective indexes are not even defined!)
+
 // way#3
 var myArray6 = new Array(1,2,"3"); // in this way the constructor arguments become the elements of the array
 ```
 
-* note that the 'length' property which is the number of elements of an array is 'writable' --> is setter and getter
+* note that the 'length' property which is the number of elements of an array is 'writable' : is `setter` and `getter`
 
 ```js
 var testArray = ['A','B','C','D','E'];
 console.log(testArray.length); // 5 elements
+
 console.log(testArray[2]); // C
 console.log(testArray[3]); // D
 
 testArray.length = 3;
+
 // here at this point the length is set to 2 elements only so the rest elements (which are located at greater index number) are deleted
 console.log(testArray.length); // 3
 console.log(testArray[2]); // C
@@ -72,13 +85,14 @@ console.log(testArray[3]); // undefined
 
 > 'iterating' arrays
 
-* remember that the Object.keys(obj) method returns an array of a given object's own enumerable properties.
+* remember that the `Object.keys(obj)` method returns an array of a given object's own enumerable properties.
 * note that NONE of these methods modify the original array (does not mutate the original array)
 * we can modify the array inside the function we pass to the array method, but the method itself does not modify the original
 
 ```js
 var arr = ['A',2,'Ehsan',34];
 var keys = Object.keys(arr);
+
 console.log(keys); // ["0", "1", "2", "3"]
 console.log(keys.length); // 4
 ```
@@ -94,11 +108,8 @@ for (var i = 0; i < keys.length; i++){
 for (var item in arr){
    console.log('Index: ' + item + ' -> ' + 'Value: ' + arr[item]);
 }
-
-// way#3
-// syntax: array.forEach(callback[, thisArg])
-
 ```
+
 ##### Array.prototype.forEach(callback[, thisArg])
 
 * Function to execute for each element, taking three arguments: currentValue,index,array
@@ -147,14 +158,5 @@ a.forEach(function(elm,index){
 },myObject);
 ```
 
-
-* Array.isArray() -->  returns true if an object is an array, false if it is not.
-
-```js
-
-console.log(Array.isArray([])); // true
-console.log(Array.isArray({})); // false
-
-```
 
 ##### Array.prototype.map(callback[, thisArg])
