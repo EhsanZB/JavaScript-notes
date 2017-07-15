@@ -264,26 +264,156 @@ console.log([].every(hasEven)); // true
 * note that if the `initial value is not specified`, in the first call, the `previous value` has been assigned as the `initial` value
 
 
+```js
+var a = [0,1,2,3];
+// var a = [2,4,6,8];
+
+var result = a.reduce(function(previousValue, currentValue, currentIndex){
+
+    console.log('INDEX: ' + currentIndex + ', ' + 'PREVIOUS: ' + previousValue +  ', ' + 'VALUE: ' + currentValue  +
+            ', ' + 'PRE+CURR: ' + (previousValue + currentValue)
+    ); //  (the index 0 is omitted!) calls begin from index = 1
+
+    // indexes: 1,2,3
+
+    return previousValue + currentValue;
+});
+
+console.log(result); // 6  --> (0+1)=1,(1+2)=3,(3+3)=6
+// console.log(result); // 20  --> (2+4)=6,(6+6)=12,(12+8)=20
+```
+
+#### Array.prototype.reduceRight(callback[, initialValue])
+
+* it's same as reduce except it begin from right to left (from end of the array).
+* it processes the array from the highest index to the lowest.
 
 
+```js
+console.log(a.reduceRight(function(previousValue, currentValue, currentIndex){
+
+    console.log('INDEX: ' + currentIndex + ', ' + 'PREVIOUS: ' + previousValue +  ', ' + 'VALUE: ' + currentValue  +
+           ', ' + 'PRE+CURR: ' + (previousValue + currentValue)
+    );
+
+    // note that the last index of the array (the highest) is omitted! (remember that in reduce() the first index was omitted)
+
+    // indexes: 2,1,0
+
+    return previousValue + currentValue;
+})); // 6
+```
+
+#### Array.prototype.indexOf(searchElement[, fromIndex = 0])
+
+* returns the first index at which a given element can be found in the array, or `-1 if it is not present`.  (`indexof(item,start)`)
+* it searches the array for the element and return its index position when found
+* start parameter is optional (if negative: `counting from the end`)
+
+```js
+var names = ['Ehsan','Amir','Massih','Ali','Amir'];
+
+console.log(names.indexOf('Amir')); // 1 (starts from beginning of the array, when found return the position and stop iteration and do not go till the end of the array)
+
+console.log(names.indexOf('Amir',2)); // 4 (starts form the index of 2 (Massih) onward!)
+```
 
 
+#### Array.prototype.lastIndexOf(searchElement[, fromIndex = arr.length - 1])
+
+* returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards, starting at fromIndex.
+* `lastIndexOf(item,start)`
+
+```js
+console.log(names.lastIndexOf('Amir')); // 4
+console.log(names.lastIndexOf('Amir',2)); // 1
+```
+
+#### Array.prototype.join()
+
+* converts all the elements of an array to string and concatenate them.
+* it's inverse of the method string.split()
+
+```js
+var a = [1,2,3];
+
+console.log(a1.join()); // "1,2,3"
+console.log(a1.join(' ')); // "1 2 3"
+console.log(a1.join('-')); // "1-2-3"
+console.log(a1.join('')); // "123"
 
 
+// a tip example!
+var b = new Array(4);
+b.join('-');
+
+// ----> how many dashes - should be placed in the returned array? (note that the 'b' has 4 pre-allocated elements in the memory)
+console.log(b.join('-')); // --- (number of dashes is n-1)   <-- new Array(n)
+```
+
+####  Array.prototype.reverse()
+
+* reverse the order of the elements
+
+```js
+var a = [1,2,3];
+console.log(a.reverse()); // [3, 2, 1]
+```
+
+#### Array.prototype.sort(compareFunction);
+
+* compareFunction is Optional. Specifies a function that defines the sort order.
+* If not supplied, elements are sorted by converting them to strings and comparing strings in Unicode code point order. (e.g: "Cherry" comes before "banana")
+* If omitted (alphabetic sort), the array is sorted according to `each character's Unicode code` point value, according to the string conversion of each element.
+* If compareFunction is supplied, the array elements are sorted according to the return value of the compare function.
+
+```js
+// the logic!
+function compare(a, b) {
+   if (a<b) { // a is less than b by some ordering criterion
+       return -1;
+   }
+
+   if (a>b) { // a is greater than b by the ordering criterion       
+       return 1;
+   }
+
+   // (a=b) a must be equal to b
+    return 0;
+}
+
+var array1 = [33,4,1111,222];
+
+console.log(array1.sort()); // [1111, 222, 33, 4]
+
+// numerical sort
+console.log(array1.sort(function(a,b){
+  return a-b;
+})); // [4, 33, 222, 1111]
+
+// reverse numerical sort
+console.log(array1.sort(function(a,b){
+  return b-a;
+}));
+
+// example#1:
+var numbers = [4, 2, 5, 1, 3];
+console.log(numbers.sort()); // [1,2,3,4,5]
+
+var alphas = ['cherry','apple','benana'];
+console.log(alphas.sort()); // ["apple", "benana", "cherry"]
+
+var alphas2 = ['cherry','apple', 'Cherry', 'benana'];
+console.log(alphas2.sort()); // ["Cherry", "apple", "benana", "cherry"]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-v
+// example#2
+// case-sensetive alphabetic sort
+ console.log(alphas2.sort(function(s,t){
+     var a = s.toLowerCase();
+     var b = t.toLowerCase();
+     if (a > b) return 1;
+     if (a < b) return -1;
+     return 0;
+ })); // ["apple", "benana", "Cherry", "cherry"]
+ ```
