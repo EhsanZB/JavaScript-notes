@@ -217,24 +217,73 @@ console.log(a.filter(function(elm){
 > 'note that every() returns 'true' on 'empty array' (but some() returns false'
 
 ```js
-  console.log([].every(function(elm){
-      return elm*1000; // here can returns any expression!
-      // it doesn't matter, the answer is true (because the array is empty so there is no element at this moment)
-  })); // true
+console.log([].every(function(elm){
+  return elm*1000; // here can returns any expression!
+  // it doesn't matter, the answer is true (because the array is empty so there is no element at this moment)
+})); // true
+
+// Are all values less than and equal to 10?
+console.log(a.every(function(element,index,array){
+  return element <= 10;
+})); // true
+
+// note that the callback function can be declared outside the method and just call the function name
+function hasLimit(element,index,array){
+  return element <= 10;
+}
+console.log(a.every(hasLimit)); // true
+
+var b = [4,5,12];
+console.log(b.every(hasLimit)); // false
+```
+
+#### Array.prototype.some(callback[, thisArg])
+
+* tests whether `some` element in the array passes the test implemented by the provided function.
+* executes the callback function `once for each element` present in the array until it finds one where callback `returns a true value`.
+* If such an element is `found`, `some() immediately returns true`. Otherwise, some() returns false
+
+```js
+// Does the array have any even number?
+function hasEven(elm){
+    return elm%2 === 0;
+}
+console.log(a.some(hasEven)); // true
+console.log([].some(hasEven)); // false
+console.log([].every(hasEven)); // true
+```
+
+#### Array.prototype.reduce(callback[, initialValue])
+
+* applies a function `against an accumulator` and `each value` of the array (from left-to-right) to reduce it to a single value. `(one time for each element` in the array)
+* executes the callback function once for each element present in the array, `excluding holes in the array`, receiving four arguments: `previousValue`, `currentValue`, `currentIndex`, `array`
+* the task of the callback function is a reduction operation (`combine two values into a single value`)
+* If the array is `empty` and no initialValue was provided, `TypeError` would be thrown.
+* If the array has only one element (regardless of position) and no initialValue was provided, `solo value` would be returned `without calling callback`.
+* If `initialValue` is provided but the array is empty, solo value would be returned `without calling callback`.
+* note that if the `initial value is not specified`, in the first call, the `previous value` has been assigned as the `initial` value
 
 
-  // Are all values less than and equal to 10?
-  console.log(a.every(function(element,index,array){
-      return element <= 10;
-  })); // true
 
-  // note that the callback function can be declared outside the method and just call the function name
-  function hasLimit(element,index,array){
-      return element <= 10;
-  }
-  console.log(a.every(hasLimit)); // true
 
-  var b = [4,5,12];
-  console.log(b.every(hasLimit)); // false
 
-  ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v
