@@ -110,7 +110,7 @@ for (var item in arr){
 }
 ```
 
-##### Array.prototype.forEach(callback[, thisArg])
+#### Array.prototype.forEach(callback[, thisArg])
 
 * Function to execute for each element, taking three arguments: currentValue,index,array
 * this function is not invoked for index properties that have been deleted or are uninitialized (i.e. on sparse arrays).
@@ -159,4 +159,82 @@ a.forEach(function(elm,index){
 ```
 
 
-##### Array.prototype.map(callback[, thisArg])
+#### Array.prototype.map(callback[, thisArg
+
+* `callback` function once for each element in an array, in order, and constructs a new array from the results.
+* map `creates a new array` with the results of calling a provided function on every element in this array.
+* the callback `is not called` for missing elements of the array (that is, indexes that have never been set, which have been deleted or which have never been assigned a value)
+* callback function produces `an element` of the new Array.
+
+```js
+var numbers = [1,4,9,16];
+var roots = numbers.map(Math.sqrt);
+
+console.log(roots); // [1,2,3,4]    (note that the numbers is still [1,4,6,16] and was not modified
+
+console.log(numbers.map(function(value,index,array){
+    return v+1; // [2, 5, 10, 17]
+}));
+```
+
+#### Array.prototype.filter(callback[, thisArg])
+
+* creates a new array with all elements that pass the test implemented by the provided function.
+* returns a true value or a value that coerces to true (all `truthy` values except `falsy` values). callback is invoked only for indexes of the array which have assigned values;
+* it is not invoked for indexes which have been deleted or which have never been assigned values.
+* one of the practical usage of this method is: `Filtering invalid entries from JSON`
+
+```js
+
+var myArray = [12, 5, 8, 130, 44];
+function myFilter(value){
+    return value >= 10;
+}
+console.log(myArray.filter(myFilter)); // [12, 130, 44]
+
+var a = [1,2,3,4,5,6,7,8,9,10];
+
+// odd numbers
+console.log(a.filter(function(elm,index,arr){  // (optional args)
+    return elm%2 != 0;
+})); // [1, 3, 5, 7, 9]
+
+// even numbers
+console.log(a.filter(function(elm){
+    return elm%2 == 0;
+})); // [2, 4, 6, 8, 10]
+
+```
+
+#### Array.prototype.every(callback[, thisArg])
+
+* tests whether `all elements` in the array `pass the test` implemented by the provided function.
+* executes the provided callback function `once for each element` present in the array until it finds one where callback returns a `falsy` value (a value that becomes false when converted to a Boolean).
+* If such an `element is found`, the `every method immediately returns false`. Otherwise, if callback returned a `true value for all elements`, every will `return true`.
+* it returns true if and only if the predicate function returns true for `all elements`.
+* the callback function in both `every` and `some` methods, is also known as `predicate function`.
+
+> 'note that every() returns 'true' on 'empty array' (but some() returns false'
+
+```js
+  console.log([].every(function(elm){
+      return elm*1000; // here can returns any expression!
+      // it doesn't matter, the answer is true (because the array is empty so there is no element at this moment)
+  })); // true
+
+
+  // Are all values less than and equal to 10?
+  console.log(a.every(function(element,index,array){
+      return element <= 10;
+  })); // true
+
+  // note that the callback function can be declared outside the method and just call the function name
+  function hasLimit(element,index,array){
+      return element <= 10;
+  }
+  console.log(a.every(hasLimit)); // true
+
+  var b = [4,5,12];
+  console.log(b.every(hasLimit)); // false
+
+  ```
