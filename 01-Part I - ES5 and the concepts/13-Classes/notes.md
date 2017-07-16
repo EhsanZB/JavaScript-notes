@@ -194,28 +194,131 @@ Range.prototype.includes = function(x){
 * 2nd, `define 'instance methods'` on the 'prototype object' of the constructor.
 * 3rd, `define 'class fields' and 'class methods'` on the constructor itself.
 
+#### immutable classes
+
+* for example the constructor function can be also a factory function --> in order to make an instance, the function can work `with and without 'new' keyword`.
+* so the defined function is both constructor and factory function.
+
 ```js
-// in this example, all these 3 steps are implemented as a simple function to define a class.
-// constructors --> initialization
-// methods --> instance methods
-// statics --> class properties
+function Range(from,to) {
+    // defining 'descriptors' for the read-only properties
+    var props = {
+        form : { value : from, enumerable : true},
+        to : {value : to, enumerable : true}
+    };
 
-function defineClass(constructor, methods, statics){
+    if (this instanceof Range){ // invoke as a constructor
+        Object.defineProperties(this, props);
+    }else{
+        return Object.create(Range.prototype, props); // invoke as a factory
+    }
+}
 
-      if (methods){
-          // copy methods to the prototype
-          for (var m in methods){
-              constructor.prototype[m] = methods[m];
-          }
-      }
-      if (statics){
-          // copy static properties to the constructor
-          for (var s in statics){
-              constructor[s] = statics[s];
-          }
-      }
+// setting up un-enumerable properties
+Object.defineProperties(Range.prototype, {
+    includes: {
+        value: function (x) {
+            return this.from <= x && x <= this.to;
+        },
+        writable: true,
+        configurable: true
+    },
+    toString: {
+        value: function () {
+            return "(" + this.from + "...." + this.to + ")";
+        },
 
-      return constructor;
+        writable: true,
+        configurable: true
+    }
+});
+```
 
+#### subclasses
+
+> in OOP, if an Object O is an instance of a class B (B is called `'subclass'` of class A), then O must also inherit properties form class A (which called as `'super class'`).
+
+* they key to `creating subclass` in JS, is proper `initialization of the prototype object`!
+* in such case, we have to specify 2 lines of code (as below) to our program in order to create a subclass. without these lines of codes, the prototype object will be an ordinary object (just inherits from Object.prototype) --> so in this case, our class is a subclass of Object object like all classes are!
+
+```js
+// subclass B inherits form superclass A
+B.prototype = Object.create(A.prototype);
+
+// but 'override' the inherited constructor properties
+B.prototype.constructor = B;
+```
+
+* in this example we want to write a `subclass B` (DateRange()) for our `superclass A` (Range())
+* note that in this example in order to initialize the new object, the constructor invokes its `superclass constructor` (using `call()` method)
+* this subclass inherits includes() and toString(), also we can override any prop defined in superclass specifically for our subclass. for example, assume that we had a method called as 'foreach' in our Range superclass, now in this example as below we override this foreach in order to work with date formats.
+
+```js
+function DateRange(from,to){
+// using superclass constructor to initialize
+  Range.call(this,from,to);
+}
+// the subclass prototype must inherit from superclass prototype (this is a key for subclassing!)
+DateRange.prototype = Object.create(Range.prototype);
+DateRange.prototype.constructor = DateRange;
+
+// defining some static fields for the subclass here like DAY in this example
+DateRange.DAY = 1000*60*60*24; // this static field holds the number of milliseconds in one day
+
+// overriding the inherited constructor prop
+DateRange.prototype.foreach = function(f){
+  var d = this.from;
+  while (d < this.to){
+      f(d);
+      d = new Date(d.getTime() + DateRange.DAY);
   }
+};
+
+var now = new Date();
+var tomorrow = new Date(now.getTime() + DateRange.DAY);
+
+console.log(now.getTime());
+console.log(DateRange.DAY);
+console.log(tomorrow);
+
+var week = new Date(now.getTime() + 7*DateRange.DAY);
+
+console.log(week);
+```
+
+#### argumenting classes
+
+> an object inherits properties from its prototype, even if the properties of the prototype change after the object is created. it means that `JS's prototype-based inheritance is dynamic`. it also means that we can argument JS classes by adding new methods to their prototype object.
+
+* note that we can also add methods to Object.prototype so every object we will create will inherit form this prototype object (available on all objects). but this is not recommended also according to ECMAScript5, there is no way to make such add-ons properties (methods) non-enumerable! so if we even add methods, it will be reported by all `for/in loops`.
+
+```js
+// example 1
+var n = 3;
+n.times(function (n){ console.log(n + ' hello'); });
+
+
+Number.prototype.timesNew = function(){
+
+    // return this; // Number (with primitive value of 5)
+    return this * 2;
+
+};
+
+var digit = 5;
+console.log(digit.timesNew()); // 10
+
+
+
+// example 2
+Number.prototype.times = function(f,context){
+
+    var n = Number(this);
+    console.log("This is 'this': " + this); // 3
+    console.log(context); // undefined
+
+    for (var i=0;i<n;i++){
+        f.call(context,i);
+    }
+};
 ```
