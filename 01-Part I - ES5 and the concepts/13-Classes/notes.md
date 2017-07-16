@@ -172,3 +172,50 @@ Range.prototype.includes = function(x){
     return (this.myfrom <= x && x <= this.myto);
 };
 ```
+
+> java-style classes:
+
+* 4 kinds of 'class members' in such languages (like java, c#,...)
+
+    - 1 `'instance fields'` -> are instance properties or variables that hold the state of an individual object
+    - 2 '`instance methods'` -> are methods that are shared by all instances of the class
+    - 3 `'class fields'` -> are instance properties or variables associated with the class (rather than with instance)
+    - 4 `'class methods'` -> are methods that are associated with the class (rather than with instance)
+
+> in javascript there are 3 different objects that involved in any class definition: constructor, prototype and instance.
+
+* `'constructor object'` -> also can be called as 'constructor function' -> which also defines the name for the class. any property we add to this object serve as 'class field' and 'class method'.
+* `'prototype object'` -> properties of this object inherited by all instances of the class and properties whose values are functions behave like 'instance methods'.
+* `'instance object'` -> each instance of a class in an object -> properties defined directly on an instance are NOT shared by other instances. 'non-function' properties defined on instances behave as 'instance field'.
+
+#### process of defining a class in javascript:
+
+* 1st, `write a 'constructor function'` -> to set instance properties on new objects.
+* 2nd, `define 'instance methods'` on the 'prototype object' of the constructor.
+* 3rd, `define 'class fields' and 'class methods'` on the constructor itself.
+
+```js
+// in this example, all these 3 steps are implemented as a simple function to define a class.
+// constructors --> initialization
+// methods --> instance methods
+// statics --> class properties
+
+function defineClass(constructor, methods, statics){
+
+      if (methods){
+          // copy methods to the prototype
+          for (var m in methods){
+              constructor.prototype[m] = methods[m];
+          }
+      }
+      if (statics){
+          // copy static properties to the constructor
+          for (var s in statics){
+              constructor[s] = statics[s];
+          }
+      }
+
+      return constructor;
+
+  }
+```
