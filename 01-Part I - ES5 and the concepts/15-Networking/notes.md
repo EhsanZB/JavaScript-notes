@@ -4,10 +4,10 @@
 
 * four techniques for client-side JS networking:
 
-    1. XMLHttpRequest -> using XMLHttpRequest (XHR) API
-    2. JSON/JSONP -> using 'script' tag
-    3. 'server push' -> also known as 'Comet' -> using EventSource API
-    4. 'socket-style' networking (using WebSockets)
+    - XMLHttpRequest -> using XMLHttpRequest (XHR) API
+    - JSON/JSONP -> using 'script' tag
+    - 'server push' -> also known as 'Comet' -> using EventSource API
+    - 'socket-style' networking (using WebSockets)
 
 > XHR is not a 'protocol-level HTTP' API -> it is a `'browser-level' API`. it means that the browser takes care of cookies, redirects, caching, proxies,.. and our code should `worry only about 'requests' and 'responses'`.
 
