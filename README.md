@@ -29,7 +29,7 @@ Other useful references:
 10. Closures
 11. Arrays
 12. Objects
-13. classes (_in progress_)
+13. classes
 14. Window Objects (_in progress_)
 15. Networking (_in progress_)
 16. Storage (_in progress_)
