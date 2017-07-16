@@ -28,7 +28,7 @@ Other useful references:
 09. Functions
 10. Closures
 11. Arrays
-12. Objects (_in progress_)
+12. Objects
 13. classes (_in progress_)
 14. Window Objects (_in progress_)
 15. Networking (_in progress_)
