@@ -24,4 +24,5 @@ Other useful references:
 08. Control statements
 09. Functions
 10. Closures
-11. Arrays (_in progress_)
+11. Arrays
+12. Objects (_in progress_)
