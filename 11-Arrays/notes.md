@@ -159,7 +159,7 @@ a.forEach(function(elm,index){
 ```
 
 
-#### Array.prototype.map(callback[, thisArg
+#### Array.prototype.map(callback[, thisArg])
 
 * `callback` function once for each element in an array, in order, and constructs a new array from the results.
 * map `creates a new array` with the results of calling a provided function on every element in this array.
@@ -176,6 +176,7 @@ console.log(numbers.map(function(value,index,array){
     return v+1; // [2, 5, 10, 17]
 }));
 ```
+> 'Other methods:'
 
 #### Array.prototype.filter(callback[, thisArg])
 
@@ -417,3 +418,127 @@ console.log(alphas2.sort()); // ["Cherry", "apple", "benana", "cherry"]
      return 0;
  })); // ["apple", "benana", "Cherry", "cherry"]
  ```
+
+#### Array.prototype.concat();
+
+* creates and returns a new array that contains the elements of the original array on which concat() was invoked (`does not modify the original`).
+
+```js
+var a = [1,2,3];
+console.log(a.concat(4,5,6)); // [1, 2, 3, 4, 5, 6]
+console.log(a); // [1, 2, 3]   (does not modify the original)
+console.log(a.concat([4,5,6])); // [1, 2, 3, 4, 5, 6]
+console.log(a.concat(4,[5,6])); // [1, 2, 3, 4, 5, 6]
+console.log(a.concat(4,5,[6])); // [1, 2, 3, 4, 5, 6]
+
+var b = [4,5];
+console.log(a.concat(b)); // [1, 2, 3, 4, 5]
+```
+
+#### Array.prototype.slice(start,end)
+
+* slice selects a part of an array and returns a new array.
+* end index is optional and is not included.
+* slice `does not modify` the original array.
+* if the end parameter does not specify it means that start from the specified index and continue to the and of the array.
+* if either `argument is negative`, it specifies an array element relative to the '`last`' element in the array
+
+```js
+var a = [0,1,2,3,4,5];
+console.log(a.slice(3)); // [3, 4, 5]   ---> note that the indexes are zero-based so slice(3) means that the 3rd element (but in index of 2 (3-1))
+
+console.log(a.slice(2,5)); // [2, 3, 4]   ---> start index is 2 and end index is 4 but it's not included so the slice returns the sliced element up to that index
+
+console.log(a.slice(2)); // [2, 3, 4, 5]
+
+console.log(a.slice(-2)); // [4,5]  ---> 2 elements from the end of the array should take out
+
+console.log(a.slice(-1)); // [5]
+
+console.log(a.slice(1,-3)); // [1,2]    --> the end index is -3 : from the end of the array, 3 elements should take out.
+```
+
+####  Array.prototype.splice(index,howmany,item1,item2,...)
+
+* adds/removes elements from an array (IMPORTANT: splice '`modify`' the original array)
+* `index` --> position to start add/remove
+* `howmany` --> number of items to be removed (including the item specified (including the start index)) if howmay=0 then nothing will remove (it is howmany not confuse with end index!)
+* `item1,item2,....` --> optional (new items to be added to array) --> used in insertion at the specific index (howmany=0)
+
+```js
+// note that in these examples we need to uncomments one by one because the splice method is actually affect the original array.
+
+// example #1
+var a = [0,1,2,3,4,5];
+
+// #1
+console.log(a.splice(3)); // [3, 4, 5]   (same result as slice(3))
+console.log(a);
+
+// #2
+// console.log(a.splice(2,5)); // [2, 3, 4, 5] --> start index 2, how many elements to remove: 5 (but because the specified number is greater than the maximum index number so nothing happen just from start of the array to the specified start index, are removed)
+// console.log(a);
+
+// #3
+// console.log(a.splice(1,3)); // [1,2,3]
+// console.log(a);
+
+console.log('ORIGINAL ARRAY: ' + a);
+console.log('SPLICE ARRAY (elements that should be removed: ' + a.splice(0,4)); // [0,1,2,3] --> start index = 0, and including the start index, 4 elements should be removed
+console.log('ORIGINAL ARRAY AFTER SPLICE: ' + a);
+
+
+// example#2
+var myFish = ['angel', 'clown', 'mandarin', 'surgeon'];
+
+// removes 0 elements from index 2, and inserts 'drum'
+var removed = myFish.splice(2, 0, 'drum');
+console.log(myFish);
+```
+
+#### Array.prototype.push(element1, ..., elementN)
+
+* `ADDs` one or more elements to the `END of an array`.
+* it returns the '`NEW length`' of the array.
+
+
+#### Array.prototype.pop()
+
+* `REMOVES the LAST element` from an array and returns that element.
+
+```js
+var a = [1,2,3];
+console.log(a.push(4,5)); // 5 (returns number of elements of the modified array) equal to a.length
+console.log(a.length); // 5
+
+console.log(a); // [1, 2, 3, 4, 5]
+
+// a.pop(); // remove the last element from the end of the array
+console.log(a.pop()); // 5 (returns the removed element)
+console.log(a); // [1, 2, 3, 4]
+```
+
+#### Array.prototype.unshift([element1[, ...[, elementN]]])
+
+* `ADDs` one or more elements to the `BEGINNING` of an array and returns the '`NEW length`' of the array.
+
+#### Array.prototype.shift()
+
+* `REMOVES the FIRST element` from an array and returns that element.
+
+```js
+var b= [1,2,3];
+console.log(b.unshift(-2,-1,0)); // 6 (length of the modified array) --> [-2,-1,0,1,2,3]
+
+b.shift(); // removes the first element from the beginning of the array
+console.log(b); // [-1, 0, 1, 2, 3]
+```
+
+#### Array.prototype.toString()
+
+* Arrays like all js objects have toString() method which this method `converts each of its elements to a string`.  * output is comma-separated list of strings.
+
+```js
+console.log([1,2,3].toString()); "1,2,3"
+console.log([1,"2","three",4,[5,6],[7],8,{x:2}].toString()); // "1,2,three,4,5,6,7,8,[object Object]"
+```
