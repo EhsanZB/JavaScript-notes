@@ -30,7 +30,7 @@ Other useful references:
 11. Arrays
 12. Objects
 13. classes
-14. Window Objects (_in progress_)
+14. Window Objects
 15. Networking (_in progress_)
 16. Storage (_in progress_)
 
