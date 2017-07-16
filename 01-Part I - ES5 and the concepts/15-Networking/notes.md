@@ -15,32 +15,32 @@
 
 * consists of 4 parts:
 
-    1. 'request method' (also called as 'verb') -> GET/POST/...
-    2. 'URL' being posted (Uniform Resource Locator)
-    3. 'request headers'
-    4. 'request body'
+    - 'request method' (also called as 'verb') -> GET/POST/...
+    - 'URL' being posted (Uniform Resource Locator)
+    - 'request headers'
+    - 'request body'
 
 #### HTTP `'response'`
 
 * sent by the server and consists of 3 parts:
 
-    1. 'status code'
-    2. 'response headers'
-    3. 'response body'
+    - 'status code'
+    - 'response headers'
+    - 'response body'
 
 > when use 'GET' request method:
 
-    1. the URL completely specifies the requested resource
-    2. the request `has no side-effect` on the server (for example no DB update,...)
-    3. server's response is 'cachable'
+    - the URL completely specifies the requested resource
+    - the request `has no side-effect` on the server (for example no DB update,...)
+    - server's response is 'cachable'
 
 * 'GET' requests never have a body -> so we need to pass a null `send(null)`;
 
 > when use 'POST' request method:
 
-    1. can send a large amount of data (has `no size limitation`)
-    2. more secure than GET (`data is not included in the URL`)
-    3. when the request `has side-effect` on the server
+    - can send a large amount of data (has `no size limitation`)
+    - more secure than GET (`data is not included in the URL`)
+    - when the request `has side-effect` on the server
 
 * when using 'POST' request, we need to add `'HTTP header'` that specifies the data that we want to send in the send() method
 * `setRequestHeader(header,value)` -> header : header name ('content-type'), value : MIME type
