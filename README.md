@@ -31,8 +31,8 @@ Other useful references:
 12. Objects
 13. classes
 14. Window Objects
-15. Networking (_in progress_)
-16. Storage (_in progress_)
+15. Networking
+16. Storage
 
 
 #### Part II 'ES6/ES2015 Features'
