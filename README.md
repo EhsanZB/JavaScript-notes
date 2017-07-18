@@ -37,8 +37,8 @@ Other useful references:
 
 #### Part II 'ES6/ES2015 Features'
 
-01. Template String 
-02. Arrows (arrow functions) (_in progress_)
+01. Template String
+02. Arrows (arrow functions) 
 03. Default Parameters (_in progress_)
 04. Rest and Spread (_in progress_)
 05. Template Strings (_in progress_)
