@@ -10,7 +10,8 @@ Other useful references:
 * [JavaScript Cookbook](http://shop.oreilly.com/product/0636920033455.do)
 * [JavaScript Pocket Reference](http://shop.oreilly.com/product/0636920011460.do)
 * [Mastering Javascript](https://www.packtpub.com/web-development/mastering-javascript)
-* [envato tuts+](https://tutsplus.com/tutorials/search?utf8=%E2%9C%93&search%5Bterms%5D=JavaScript&button=)
+* [Envato Tuts+](https://tutsplus.com/tutorials/search?utf8=%E2%9C%93&search%5Bterms%5D=JavaScript&button=)
+* [Laracast](https://laracasts.com/)
 
 ### Topics:
 
@@ -38,8 +39,8 @@ Other useful references:
 #### Part II 'ES6/ES2015 Features'
 
 01. Template String
-02. Arrows (arrow functions) 
-03. Default Parameters (_in progress_)
+02. Arrows (arrow functions)
+03. Default Parameters
 04. Rest and Spread (_in progress_)
 05. Template Strings (_in progress_)
 06. Object additions (_in progress_)
