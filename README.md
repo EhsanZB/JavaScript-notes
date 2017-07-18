@@ -35,14 +35,21 @@ Other useful references:
 15. Networking
 16. Storage
 
+* Future subjects need to be added:
+
+    * DOM Object (getEmelentByID(),....)
+    * query selectors
+    * working with DOM and node elements
+    * passing data using query string
+    * single tone
 
 #### Part II 'ES6/ES2015 Features'
 
 01. Template String
 02. Arrows (arrow functions)
 03. Default Parameters
-04. Rest and Spread (
-05. Object additions (_in progress_)
+04. Rest and Spread
+05. Object additions
 06. Classes (_in progress_)
 07. Modules (_in progress_)
 08. Promises (_in progress_)
