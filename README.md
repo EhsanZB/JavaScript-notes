@@ -53,7 +53,7 @@ Other useful references:
 06. Classes
 07. Modules
 08. Promises
-09. String additions (_in progress_)
+09. String additions
 10. Array additions (_in progress_)
 11. Generators (_in progress_)
 12. Sets (_in progress_)
