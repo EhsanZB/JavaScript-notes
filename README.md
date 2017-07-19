@@ -51,7 +51,7 @@ Other useful references:
 04. Rest and Spread
 05. Object additions
 06. Classes
-07. Modules (_in progress_)
+07. Modules
 08. Promises (_in progress_)
 09. String additions (_in progress_)
 10. Array additions (_in progress_)
