@@ -50,7 +50,7 @@ Other useful references:
 03. Default Parameters
 04. Rest and Spread
 05. Object additions
-06. Classes (_in progress_)
+06. Classes
 07. Modules (_in progress_)
 08. Promises (_in progress_)
 09. String additions (_in progress_)
