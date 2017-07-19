@@ -21,10 +21,73 @@ var TaskCollection = require('./TaskCollection');
 ```js
 // New Approach (using import)
 import TaskCollection from './TaskCollection';
+
+// another example:
+import { TaskCollection, foo } from './TaskCollection';
 ```
 
 > note that if we get an error regarding `import` and `export` we need to add babel presets into our package file. then we need to add this preset in our gupl file (configuration of babelify)
 
+* tip: `npm init -y` (ignore the interactive process of making a `packagejson` file)
+
 ```bash
  $ npm install babel-preset-es2015 --save-dev
+```
+
+>  note that if we use `export default` then we can `omit` the {}, but if we have any other exports within the module, then we need to put that value `inside` the {}
+
+```js
+import TaskCollection, { foo } from './TaskCollection';
+```
+
+> in ES6 we can export as much as we want (`opposite` of commonJs), it means that for example we can have both export the class and also export another variable at the same time in a single module js file (like TaskCollection in the example).
+
+* exporting multiple values: the `value` of what we are `exporting` is `what we import` (export let foo = 'bar') --> (import {foo} from ...)
+
+```js
+// TaskCollection.js
+
+
+// way#1
+// importing the module in this way: import { TaskCollection, foo } from './TaskCollection';
+export class TaskCollection {
+    constructor(tasks = []) {
+        this.tasks = tasks;
+    }
+
+    dump() {
+        console.log(this.tasks);
+    }
+}
+
+export let foo = 'bar';
+
+
+// way#2 import TaskCollection, { foo } from './TaskCollection';
+export default class TaskCollection {
+    constructor(tasks = []) {
+        this.tasks = tasks;
+    }
+
+    dump() {
+        console.log(this.tasks);
+    }
+}
+
+export let foo = 'bar';
+
+
+// way#3 (export the class at the bottom of the code!)
+class TaskCollection {
+    constructor(tasks = []) {
+        this.tasks = tasks;
+    }
+
+    dump() {
+        console.log(this.tasks);
+    }
+}
+
+export let foo = 'bar';
+export default TaskCollection;
 ```
