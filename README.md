@@ -54,7 +54,7 @@ Other useful references:
 07. Modules
 08. Promises
 09. String additions
-10. Array additions (_in progress_)
+10. Array additions
 11. Generators (_in progress_)
 12. Sets (_in progress_)
 13. Symbols (_in progress_)
