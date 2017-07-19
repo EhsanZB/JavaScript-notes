@@ -35,13 +35,6 @@ Other useful references:
 15. Networking
 16. Storage
 
-* Future subjects need to be added:
-
-    * DOM Object (getEmelentByID(),....)
-    * query selectors
-    * working with DOM and node elements
-    * passing data using query string
-    * single tone
 
 #### Part II 'ES6/ES2015 Features'
 
@@ -59,3 +52,13 @@ Other useful references:
 12. Sets (_in progress_)
 13. Symbols (_in progress_)
 14. Statement addition (for..of) (_in progress_)
+
+
+###### Future subjects need to be added (missing topics!):
+
+    * DOM Object (getEmelentByID(),....)
+    * query selectors
+    * working with DOM and node elements
+    * passing data using query string
+    * single tone
+    * all new es6 array methods (complete the array additions!)
