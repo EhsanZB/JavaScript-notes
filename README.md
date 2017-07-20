@@ -49,7 +49,7 @@ Other useful references:
 09. String additions
 10. Array additions
 11. Generators
-12. Sets (_in progress_)
+12. Sets
 13. Symbols (_in progress_)
 14. Statement addition (for..of) (_in progress_)
 
