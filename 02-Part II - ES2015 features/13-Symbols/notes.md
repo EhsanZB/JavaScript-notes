@@ -1,7 +1,5 @@
 ## Symbols
 
-* [Source:](https://developer.mozilla.org/en-US/docs/Glossary/Symbol)
-
 > The data type `symbol` is a `primitive data type` having the quality that values of this type can be used to `make object properties` that are anonymous.  This data type is `used as the key` for an object property when the property is intended to be `private`, for the internal use of a class or an object type.
 
 * A value having the data type "symbol" can be referred to as a `"symbol value"`.
@@ -35,3 +33,5 @@ Object.keys(obj) // []
 Object.getOwnPropertyNames(obj) // []
 Object.getOwnPropertySymbols(obj) // [ Symbol(), Symbol() ]
 ```
+
+* [Source:MDN Glossary](https://developer.mozilla.org/en-US/docs/Glossary/Symbol)
